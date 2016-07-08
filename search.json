@@ -1,0 +1,7 @@
+{
+	"type":"apartment",
+	"location":"Brooklyn",
+	"minPrice":0,
+	"maxPrice":6000,
+	"beds":3
+}
