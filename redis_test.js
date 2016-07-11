@@ -16,8 +16,8 @@ app.get('/', function(request, response) {
     response.render('pages/index');
 });
 
-app.get('/Johnson', function(req,res){
-    res.send('dog');
+app.get('/', function(req,res){
+    res.send(dog);
 } 
 );
 
@@ -25,7 +25,7 @@ app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
 });
 
-
+dog = 'hello'
 /*
 var types = [];
 var locations = [];
@@ -125,7 +125,7 @@ client.sadd("senderid4",JSON.stringify({'type':'villa',
         'maxPrice' : 2340,
         'beds' : 3}));
 client.smembers("senderid2", function(err, reply){
-	console.log(reply);
+	dog += reply
 })
 
 //grabKeys();
