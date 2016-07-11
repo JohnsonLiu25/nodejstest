@@ -17,7 +17,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/sad', function(req,res){
-    res.send();
+    res.send(data);
 } 
 );
 
@@ -25,7 +25,7 @@ app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
 });
 
-data = ''
+data = 'geegee'
 
 var types = [];
 var locations = [];
@@ -101,11 +101,32 @@ client.on('error', function(err){
 client.on('connect', function() {
     console.log("redis connected!");
 });
-
+/*
+//Adds sample client information to database
+client.sadd("senderid",JSON.stringify({'type':'house',
+        'location' : 'brooklyn',
+        'minPrice' : 1000,
+        'maxPrice' : 2000,
+        'beds' : 2 }));
+client.sadd("senderid2",JSON.stringify({'type':'villa',
+        'location' : 'queens',
+        'minPrice' : 2001,
+        'maxPrice' : 3000,
+        'beds' : 3}));
+client.sadd("senderid3",JSON.stringify({'type':'House',
+        'location' : 'queens',
+        'minPrice' : 2021,
+        'maxPrice' : 2300,
+        'beds' : 3}));
+client.sadd("senderid4",JSON.stringify({'type':'villa',
+        'location' : 'Queens',
+        'minPrice' : 1023,
+        'maxPrice' : 2340,
+        'beds' : 3}));
 client.smembers("senderid2", function(err, reply){
-	dog += reply
+	data += reply
 })
-
+*/
 //grabKeys();
 
 //client.flushdb();
