@@ -59,6 +59,12 @@ function addData(id_sender, num, list){
 			    sortCount(types);
 			    console.log("The average price range is: $"+avg(minPrices)+" to $"+avg(maxPrices));
 			    console.log("");
+			    console.log(types);
+			    console.log(locations);
+			    console.log(minPrices);
+			    console.log(count(types));
+			    console.log(count(locations));
+
 		}
 	})
 }
