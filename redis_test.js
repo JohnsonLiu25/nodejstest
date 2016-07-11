@@ -1,7 +1,9 @@
 //Analyze entire database
 var redis = require('redis');
 var client = redis.createClient();
+var express = require('express');
 
+var app = express();
 var types = [];
 var locations = [];
 var minPrices = [];
@@ -69,7 +71,7 @@ function grabKeys(){
 	});
 };
 
-
+app.get()
 
 client.on('connect', function() {
     //console.log('connected');

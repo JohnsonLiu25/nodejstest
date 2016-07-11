@@ -13,6 +13,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node redis_test.js"
   },
+  "engines": {
+    "node": "6.2.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JohnsonLiu25/priorityjsontest.git"
