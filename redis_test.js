@@ -1,5 +1,4 @@
 //Analyze entire database
-var redis = require('redis');
 var client = require('redis').createClient(process.env.REDIS_URL);
 var express = require('express');
 /*
