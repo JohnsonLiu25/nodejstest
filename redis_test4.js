@@ -1,4 +1,4 @@
-//Analyze entire database
+//Analyzing data for one sender
 var redis = require('redis');
 var client = redis.createClient();
 
@@ -32,7 +32,7 @@ function count(list){
 function sorter(list, rev){
     return (Object.keys(list).sort(function(a, b) {return (list[a] - list[b])})).reverse();
 }
-//Display Data
+
 function sortCount(list){
 	var sortedKeys = sorter(count(list));
 	for (var i in sortedKeys){
@@ -40,64 +40,55 @@ function sortCount(list){
 		console.log(num_order + ". " + sortedKeys[i] + ": " + count(list)[sortedKeys[i]]);
 	}
 }
-//use set_total at last one
-function addData(id_sender, num, list){
+
+function analyzeResponse(id_sender){
 	client.smembers(id_sender, function(err, reply){
-		for (var i in reply){
-			var usable = JSON.parse(reply[i]);
-			minPrices.push(usable['minPrice']);
-		  	maxPrices.push(usable['maxPrice']);
-		  	locations.push(usable['location']);
-		  	types.push(usable['type']);
-		}
-	  	if (list.length == (Number(num)+1)){
+	for (var i in reply){
+		var usable = JSON.parse(reply[i]);
+		minPrices.push(usable['minPrice']);
+	  	maxPrices.push(usable['maxPrice']);
+	  	locations.push(usable['location']);
+	  	types.push(usable['type']);
+	  	if (types.length == reply.length){
+	  			console.log("Data for: " + id_sender);
 	  			console.log("Locations");
 	  			sortCount(locations);
 	  			console.log("Types");
 			    sortCount(types);
 			    console.log("The average price range is: $"+avg(minPrices)+" to $"+avg(maxPrices));
 			    console.log("");
-		}
-	})
+			}
+	}
+})
 }
-
-function grabKeys(){
-	client.keys('*', function (err, keys) {
-		for (var j in keys){
-			addData(keys[j], j, keys);
-		}
-	});
-};
-
-
 
 client.on('connect', function() {
     //console.log('connected');
 });
-
-//Adds sample client information to database
-client.sadd("senderid",JSON.stringify({'type':'house',
-        'location' : 'brooklyn',
-        'minPrice' : 1000,
-        'maxPrice' : 2000,
-        'beds' : 2 }));
+client.sadd("senderid",JSON.stringify({'type':'villa',
+        'location' : 'manhattan',
+        'minPrice' : 4000,
+        'maxPrice' : 4500,
+        'beds' : 3}));
 client.sadd("senderid2",JSON.stringify({'type':'villa',
         'location' : 'queens',
         'minPrice' : 2001,
         'maxPrice' : 3000,
         'beds' : 3}));
-client.sadd("senderid3",JSON.stringify({'type':'House',
+client.sadd("senderid2",JSON.stringify({'type':'house',
+        'location' : 'brooklyn',
+        'minPrice' : 3000,
+        'maxPrice' : 3200,
+        'beds' : 4 }));
+client.sadd("senderid2",JSON.stringify({'type':'villa',
         'location' : 'queens',
-        'minPrice' : 2021,
-        'maxPrice' : 2300,
+        'minPrice' : 2050,
+        'maxPrice' : 4000,
         'beds' : 3}));
-client.sadd("senderid4",JSON.stringify({'type':'villa',
-        'location' : 'Queens',
-        'minPrice' : 1023,
-        'maxPrice' : 2340,
+client.sadd("senderid2",JSON.stringify({'type':'villa',
+        'location' : 'manhattan',
+        'minPrice' : 3200,
+        'maxPrice' : 4000,
         'beds' : 3}));
-
-grabKeys();
-
-//client.flushdb();
-
+analyzeResponse("senderid");
+analyzeResponse("senderid2");
