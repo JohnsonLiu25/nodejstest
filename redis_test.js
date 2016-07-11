@@ -125,7 +125,7 @@ client.sadd("senderid4",JSON.stringify({'type':'villa',
         'beds' : 3}));
 */
 client.smembers("senderid2", function(err, reply){
-	data += reply
+	data += ("\n" +reply)
 })
 
 //grabKeys();
