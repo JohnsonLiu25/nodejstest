@@ -16,7 +16,7 @@ app.get('/', function(request, response) {
     response.render('pages/index');
 });
 
-app.get('/', function(req,res){
+app.get('/sad', function(req,res){
     res.send(dog);
 } 
 );
