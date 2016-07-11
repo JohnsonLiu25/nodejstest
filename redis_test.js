@@ -98,9 +98,7 @@ client.on('connect', function() {
 });
 
 grabKeys();
-client.smembers("senderid5", function(err, reply){
-	console.log(reply);
-})
+console.log(types);
 
 //Adds sample client information to database
 /*
