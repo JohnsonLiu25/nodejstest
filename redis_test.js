@@ -76,7 +76,7 @@ function addData(id_sender, num, list){
 	  			data += sortCount(locations);
 	  			data += "<br>Types<br>";
 			    data += sortCount(types);
-			    data += "<br>The average price range is: $"+avg(minPrices)+" to $"+avg(maxPrices);
+			    data += "<br>The average price range is: $"+avg(minPrices)+" to $"+avg(maxPrices)+"<br>";
 		}
 	})
 }
@@ -117,12 +117,13 @@ client.sadd("senderid3",JSON.stringify({'type':'House',
         'maxPrice' : 2300,
         'beds' : 3}));
         */
+        /*
 client.sadd("senderid5",JSON.stringify({'type':'villa',
         'location' : 'Manhattan',
         'minPrice' : 1055,
         'maxPrice' : 4000,
         'beds' : 3}));
-
+*/
 
 grabKeys();
 
