@@ -1,6 +1,6 @@
 //Analyze entire database
 var redis = require('redis');
-var client = redis.createClient();
+var client = require('redis').createClient(process.env.REDIS_URL);
 var express = require('express');
 
 var app = express();
@@ -73,8 +73,12 @@ function grabKeys(){
 
 app.get()
 
+client.on('error', function(err){
+    console.log('Error ' + err);
+});
+
 client.on('connect', function() {
-    //console.log('connected');
+    console.log("redis connected!");
 });
 
 //Adds sample client information to database
