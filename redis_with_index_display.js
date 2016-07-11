@@ -18,7 +18,8 @@ app.get('/Johnson', function(req,res){
     var data = grabKeys();
     
     res.send(data);
-} );
+} 
+);
 
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
@@ -97,10 +98,13 @@ function addData(id_sender, num, list){
 
 function grabKeys(){
     client.keys('*', function (err, keys) {
-	for (var j in keys){
-	    addData(keys[j], j, keys);
-	}
+    	var data = '';
+		for (var j in keys){
+	    	data += addData(keys[j], j, keys);
+		}
+		return data;
     });
+
 };
 
 app.get()

@@ -2,8 +2,7 @@
 var redis = require('redis');
 var client = require('redis').createClient(process.env.REDIS_URL);
 var express = require('express');
-
-var app = express();
+/*
 var types = [];
 var locations = [];
 var minPrices = [];
@@ -71,8 +70,7 @@ function grabKeys(){
 	});
 };
 
-app.get()
-
+*/
 client.on('error', function(err){
     console.log('Error ' + err);
 });
@@ -103,7 +101,7 @@ client.sadd("senderid4",JSON.stringify({'type':'villa',
         'maxPrice' : 2340,
         'beds' : 3}));
 
-grabKeys();
+//grabKeys();
 
 //client.flushdb();
 
