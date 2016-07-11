@@ -24,9 +24,7 @@ app.get('/sad', function(req,res){
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
 });
-
-data = 'geegee' + '\n'
-
+var data = '';
 var types = [];
 var locations = [];
 var minPrices = [];
