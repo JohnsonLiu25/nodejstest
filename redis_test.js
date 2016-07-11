@@ -60,7 +60,8 @@ function sortCount(list){
 	var sortedKeys = sorter(count(list));
 	for (var i in sortedKeys){
 		var num_order = Number(i) + 1;
-		console.log(num_order + ". " + sortedKeys[i] + ": " + count(list)[sortedKeys[i]]);
+		line = num_order + ". " + sortedKeys[i] + ": " + count(list)[sortedKeys[i]];
+		return line;
 	}
 }
 //use set_total at last one
@@ -74,8 +75,8 @@ function addData(id_sender, num, list){
 		  	types.push(usable['type']);
 		}
 	  	if (list.length == (Number(num)+1)){
-	  			data += "\nLocations";
-	  			sortCount(locations);
+	  			data += "Locations";
+	  			data += sortCount(locations);
 	  			console.log("Types");
 			    sortCount(types);
 			    console.log("The average price range is: $"+avg(minPrices)+" to $"+avg(maxPrices));
