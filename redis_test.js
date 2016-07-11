@@ -76,7 +76,7 @@ function addData(id_sender, num, list){
 		  	types.push(usable['type']);
 		}
 	  	if (list.length == (Number(num)+1)){
-	  			data += "Locations\n";
+	  			data += "Locations <br>";
 	  			data += sortCount(locations);
 	  			console.log("Types");
 			    sortCount(types);
