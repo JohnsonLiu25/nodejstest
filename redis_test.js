@@ -74,7 +74,7 @@ function addData(id_sender, num, list){
 		  	types.push(usable['type']);
 		}
 	  	if (list.length == (Number(num)+1)){
-	  			console.log("Locations");
+	  			data += "\nLocations";
 	  			sortCount(locations);
 	  			console.log("Types");
 			    sortCount(types);
@@ -122,11 +122,8 @@ client.sadd("senderid4",JSON.stringify({'type':'villa',
         'maxPrice' : 2340,
         'beds' : 3}));
 */
-client.smembers("senderid2", function(err, reply){
-	data += reply;
-})
 
-//grabKeys();
+grabKeys();
 
 //client.flushdb();
 
