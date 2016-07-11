@@ -12,11 +12,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.get('/', function(request, response) {
-    response.render('pages/index');
-});
-
-app.get('/sad', function(req,res){
+app.get('/', function(req,res){
     res.send(data);
 } 
 );
@@ -80,7 +76,7 @@ function addData(id_sender, num, list){
 	  			data += sortCount(locations);
 	  			data += "<br>Types<br>";
 			    data += sortCount(types);
-			    data += "The average price range is: $"+avg(minPrices)+" to $"+avg(maxPrices);
+			    data += "<br>The average price range is: $"+avg(minPrices)+" to $"+avg(maxPrices);
 		}
 	})
 }
