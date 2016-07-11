@@ -25,7 +25,7 @@ app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
 });
 
-data = 'geegee'
+data = 'geegee' + '\n'
 
 var types = [];
 var locations = [];
@@ -125,7 +125,7 @@ client.sadd("senderid4",JSON.stringify({'type':'villa',
         'beds' : 3}));
 */
 client.smembers("senderid2", function(err, reply){
-	data += ("\n" +reply)
+	data += reply;
 })
 
 //grabKeys();

@@ -55,8 +55,7 @@ function analyzeResponse(id_sender){
 	  			sortCount(locations);
 	  			console.log("Types");
 			    sortCount(types);
-			    console.log("The average price range is: $"+avg(minPrices)+" to $"+avg(maxPrices));
-			    console.log("");
+			    console.log("The average price range is: $"+avg(minPrices)+" to $"+avg(maxPrices) + "\n");
 			}
 	}
 })
