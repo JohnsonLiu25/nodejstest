@@ -78,7 +78,7 @@ function addData(id_sender, num, list){
 	  	if (list.length == (Number(num)+1)){
 	  			data += "Locations<br>";
 	  			data += sortCount(locations);
-	  			data += "Types<Br>";
+	  			data += "<br>Types<br>";
 			    data += sortCount(types);
 			    data += "The average price range is: $"+avg(minPrices)+" to $"+avg(maxPrices);
 		}
