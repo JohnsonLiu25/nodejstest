@@ -57,12 +57,13 @@ function sorter(list, rev){
 }
 //Display Data
 function sortCount(list){
+	line = '';
 	var sortedKeys = sorter(count(list));
 	for (var i in sortedKeys){
 		var num_order = Number(i) + 1;
-		line = num_order + ". " + sortedKeys[i] + ": " + count(list)[sortedKeys[i]];
-		return line;
+		line += num_order + ". " + sortedKeys[i] + ": " + count(list)[sortedKeys[i]];
 	}
+	return line;
 }
 //use set_total at last one
 function addData(id_sender, num, list){
