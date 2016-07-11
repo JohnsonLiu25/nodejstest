@@ -96,8 +96,11 @@ client.on('error', function(err){
 client.on('connect', function() {
     console.log("redis connected!");
 });
-/*
+
+grabKeys();
+
 //Adds sample client information to database
+/*
 client.sadd("senderid",JSON.stringify({'type':'house',
         'location' : 'brooklyn',
         'minPrice' : 1000,
@@ -113,14 +116,13 @@ client.sadd("senderid3",JSON.stringify({'type':'House',
         'minPrice' : 2021,
         'maxPrice' : 2300,
         'beds' : 3}));
-client.sadd("senderid4",JSON.stringify({'type':'villa',
-        'location' : 'Queens',
-        'minPrice' : 1023,
-        'maxPrice' : 2340,
+        */
+client.sadd("senderid5",JSON.stringify({'type':'villa',
+        'location' : 'Manhattan',
+        'minPrice' : 1055,
+        'maxPrice' : 4000,
         'beds' : 3}));
-*/
+
 
 grabKeys();
-
-//client.flushdb();
 
