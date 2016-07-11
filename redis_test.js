@@ -20,7 +20,7 @@ app.get('/', function(req,res){
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
 });
-var data = '??';
+var data = '';
 var types = [];
 var locations = [];
 var minPrices = [];
@@ -124,6 +124,4 @@ client.sadd("senderid5",JSON.stringify({'type':'villa',
         'maxPrice' : 4000,
         'beds' : 3}));
 */
-
-grabKeys();
 
