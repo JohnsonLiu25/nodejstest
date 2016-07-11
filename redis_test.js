@@ -44,6 +44,7 @@ function count(list){
 		}	else {
 			countList[list[i].toLowerCase()] += 1;
 		}
+		console.log(countList);
 	}
 	return countList;
 }
