@@ -39,7 +39,7 @@ function avg(list){
 function count(list){
 	countList = {};
 	for (var i = 0; i < list.length; i++){
-		if (Object.keys(countList).indexOf(list[i]) == -1){
+		if (Object.keys(countList).indexOf(list[i].toLowerCase()) == -1){
 			countList[list[i].toLowerCase()] = 1;
 		}	else {
 			countList[list[i].toLowerCase()] += 1;
