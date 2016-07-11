@@ -77,6 +77,9 @@ function addData(id_sender, num, list){
 	  			data += "<br>Types<br>";
 			    data += sortCount(types);
 			    data += "<br>The average price range is: $"+avg(minPrices)+" to $"+avg(maxPrices)+"<br>";
+
+				console.log(types);
+
 		}
 	})
 }
@@ -98,8 +101,6 @@ client.on('connect', function() {
 });
 
 grabKeys();
-console.log(types);
-
 //Adds sample client information to database
 /*
 client.sadd("senderid",JSON.stringify({'type':'house',
