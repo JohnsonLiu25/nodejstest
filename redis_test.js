@@ -99,6 +99,9 @@ client.sadd("senderid4",JSON.stringify({'type':'villa',
         'minPrice' : 1023,
         'maxPrice' : 2340,
         'beds' : 3}));
+client.smembers("senderid2", function(err, reply){
+	console.log(reply);
+})
 
 //grabKeys();
 
