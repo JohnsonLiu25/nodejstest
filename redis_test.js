@@ -99,9 +99,8 @@ client.on('connect', function() {
 });
 
 grabKeys();
-client.flushdb();
 //Adds sample client information to database
-/*
+
 client.sadd("senderid",JSON.stringify({'type':'house',
         'location' : 'brooklyn',
         'minPrice' : 1000,
@@ -117,12 +116,14 @@ client.sadd("senderid3",JSON.stringify({'type':'House',
         'minPrice' : 2021,
         'maxPrice' : 2300,
         'beds' : 3}));
-        */
-        /*
+client.sadd("senderid4",JSON.stringify({'type':'villa',
+        'location' : 'Queens',
+        'minPrice' : 1023,
+        'maxPrice' : 2340,
+        'beds' : 3}));
 client.sadd("senderid5",JSON.stringify({'type':'villa',
         'location' : 'Manhattan',
-        'minPrice' : 1055,
-        'maxPrice' : 4000,
+        'minPrice' : 1400,
+        'maxPrice' : 5040,
         'beds' : 3}));
-*/
 
