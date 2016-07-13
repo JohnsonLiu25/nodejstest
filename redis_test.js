@@ -1,4 +1,4 @@
-//Analyze entire database
+//Analyze entire database - heroku
 var client = require('redis').createClient(process.env.REDIS_URL);
 
 var express = require('express');
@@ -21,6 +21,8 @@ app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
 });
 var data = '';
+
+//data lists
 var types = [];
 var locations = [];
 var minPrices = [];
@@ -51,7 +53,7 @@ function count(list){
 function sorter(list, rev){
     return (Object.keys(list).sort(function(a, b) {return (list[a] - list[b])})).reverse();
 }
-//Display Data
+//Displays sorted data with the count
 function sortCount(list){
 	line = '';
 	var sortedKeys = sorter(count(list));
@@ -61,9 +63,9 @@ function sortCount(list){
 	}
 	return line;
 }
-//use set_total at last one
-function addData(id_sender, num, list){
-	client.smembers(id_sender, function(err, reply){
+//Adds the values of each key to the data lists and then outputs the information to termninal.
+function addData(num, list){
+	client.smembers(list[num], function(err, reply){
 		for (var i in reply){
 			var usable = JSON.parse(reply[i]);
 			minPrices.push(usable['minPrice']);
@@ -72,25 +74,21 @@ function addData(id_sender, num, list){
 		  	types.push(usable['type']);
 		}
 	  	if (list.length == (Number(num)+1)){
-	  			data += "Locations<br>";
-	  			data += sortCount(locations);
-	  			data += "<br>Types<br>";
-			    data += sortCount(types);
-			    data += "<br>The average price range is: $"+avg(minPrices)+" to $"+avg(maxPrices)+"<br>";
-			    console.log(types);
-			    console.log(locations);
-			    console.log(minPrices);
-			    console.log(count(types));
-			    console.log(count(locations));
+	  			console.log("Locations");
+	  			sortCount(locations);
+	  			console.log("Types");
+			    sortCount(types);
+			    console.log("The average price range is: $"+avg(minPrices)+" to $"+avg(maxPrices));
+			    console.log("");
 
 		}
 	})
 }
-
+//Gets all the keys in the database
 function grabKeys(){
 	client.keys('*', function (err, keys) {
 		for (var j in keys){
-			addData(keys[j], j, keys);
+			addData(j, keys);
 		}
 	});
 };

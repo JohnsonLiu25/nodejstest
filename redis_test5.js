@@ -1,9 +1,11 @@
-//Analyze entire database
+//Analyze entire database - terminal
 var redis = require('redis');
 var client = redis.createClient();
-var express = require('express');
 
+var express = require('express');
 var app = express();
+
+//Data lists
 var types = [];
 var locations = [];
 var minPrices = [];
@@ -18,33 +20,37 @@ function avg(list){
 	var average = total / list.length;
 	return total, average.toFixed(2);
 }
+//Title case
+function title(string){
+	return string.replace(/^[a-z]/, function (x) {return x.toUpperCase()});
+}
 //Counts the number of times something appears in a list
 function count(list){
 	countList = {};
 	for (var i = 0; i < list.length; i++){
-		if (Object.keys(countList).indexOf(list[i].toLowerCase()) == -1){
-			countList[list[i].toLowerCase()] = 1;
+		if (Object.keys(countList).indexOf(title(list[i])) == -1){
+			countList[title(list[i])] = 1;
 		}	else {
-			countList[list[i].toLowerCase()] += 1;
+			countList[title(list[i])] += 1;
 		}
 	}
 	return countList;
 }
 //Sorts based on value and gives list of keys in reverse order. Keys with higher values are first in the list
-function sorter(list, rev){
+function sorter(list){
     return (Object.keys(list).sort(function(a, b) {return (list[a] - list[b])})).reverse();
 }
-//Display Data
+//Displays sorted data with the count
 function sortCount(list){
 	var sortedKeys = sorter(count(list));
 	for (var i in sortedKeys){
 		var num_order = Number(i) + 1;
-		console.log(num_order + ". " + sortedKeys[i] + ": " + count(list)[sortedKeys[i]]);
+		console.log(num_order + ". " + sortedKeys[i] + ":\t" + count(list)[sortedKeys[i]] + '\t' + (count(list)[sortedKeys[i]]/list.length*100)+'%');
 	}
 }
-//use set_total at last one
-function addData(id_sender, num, list){
-	client.smembers(id_sender, function(err, reply){
+//Adds the values of each key to the data lists and then outputs the information to termninal.
+function addData(num, list){
+	client.smembers(list[num], function(err, reply){
 		for (var i in reply){
 			var usable = JSON.parse(reply[i]);
 			minPrices.push(usable['minPrice']);
@@ -53,26 +59,19 @@ function addData(id_sender, num, list){
 		  	types.push(usable['type']);
 		}
 	  	if (list.length == (Number(num)+1)){
-	  			console.log("Locations");
+	  			console.log("Locations\tNum\tPercent");
 	  			sortCount(locations);
-	  			console.log("Types");
+	  			console.log("Types\t\tNum\tPercent");
 			    sortCount(types);
 			    console.log("The average price range is: $"+avg(minPrices)+" to $"+avg(maxPrices));
-			    console.log("");
-			    console.log(types);
-			    console.log(locations);
-			    console.log(minPrices);
-			    console.log(count(types));
-			    console.log(count(locations));
-
 		}
 	})
 }
-
-function grabKeys(){
+//Gets all the keys in the database
+function populateLists(){
 	client.keys('*', function (err, keys) {
 		for (var j in keys){
-			addData(keys[j], j, keys);
+			addData(j, keys);
 		}
 	});
 };
@@ -86,7 +85,10 @@ client.on('connect', function() {
     console.log("redis connected!");
 });
 
+populateLists();
+
 //Adds sample client information to database
+/*
 client.sadd("senderid",JSON.stringify({'type':'house',
         'location' : 'brooklyn',
         'minPrice' : 1000,
@@ -112,4 +114,4 @@ client.sadd("senderid5",JSON.stringify({'type':'villa',
         'minPrice' : 1400,
         'maxPrice' : 5040,
         'beds' : 3}));
-grabKeys();
+*/

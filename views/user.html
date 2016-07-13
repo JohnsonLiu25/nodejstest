@@ -1,0 +1,13 @@
+<% include helper.js %>
+<meta charset="utf-8">
+<title><%= pageTitle %></title>
+<h1>All Users</h1>
+<ol>
+<% allkeys = allkeys.sort() %>
+<% for (var i in allkeys) {%>
+<li><a href="/users/<%- allkeys[i] %>"><%- allkeys[i] %></a></li>
+<% } %>
+</ol>
+<hr>
+<a href='/'>database</a>
+

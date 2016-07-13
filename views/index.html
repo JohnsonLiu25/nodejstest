@@ -1,0 +1,70 @@
+<% include helper.js %>
+<meta charset="utf-8">
+<title><%= pageTitle %></title>
+<h1>Popular Searches for Entire Database</h1>
+<h2>Popularity by Type</h2>
+<%	
+	counted = count(addtoList(jsonList)['types']);
+	sorted = sorter(counted);
+%>
+<table style="width:33%">
+	<tr>
+		<th align="left">Ranking</th>
+		<th align="left">Type</th>
+		<th align="left">Frequency</th>
+		<th align="left">Percent</th>
+	</tr>
+	<% for (var i in sorted) { %>
+	<tr>
+		<td><%- Number(i) + 1 %></td>
+		<td><%- sorted[i] %></td>
+		<td><%- counted[sorted[i]] %></td>
+		<td><%- (counted[sorted[i]] / addtoList(jsonList)['types'].length * 100).toFixed(1) %>%</td>
+	</tr>
+	<% } %>
+</table>
+<%	
+	counted = count(addtoList(jsonList)['locations']);
+	sorted = sorter(counted);
+%>
+<h2>Popularity by Location</h2>
+<table style="width:33%">
+	<tr>
+		<th align="left">Ranking</th>
+		<th align="left">Type</th>
+		<th align="left">Frequency</th>
+		<th align="left">Percent</th>
+	</tr>
+	<% for (var i in sorted) { %>
+	<tr>
+		<td><%- Number(i) + 1 %></td>
+		<td><%- sorted[i] %></td>
+		<td><%- counted[sorted[i]] %></td>
+		<td><%- (counted[sorted[i]] / addtoList(jsonList)['types'].length * 100).toFixed(1) %>%</td>
+	</tr>
+	<% } %>
+</table>
+<h2>Average Price Range </h2>
+<p>Price Range: $<%- avg(addtoList(jsonList)['minPrices'])%> - $<%- avg(addtoList(jsonList)['maxPrices'])%>
+<hr>
+<h2>All Searches</h2>
+<table style="width:50%">
+	<tr>
+    	<th align="left">Type</th>
+    	<th align="left">Location</th> 
+    	<th align="left">Minimum Price</th>
+    	<th align="left">Maximum Price</th>
+    	<th align="left">Beds</th>
+  	</tr>
+  	<% for (var i in jsonList) { %>
+	<tr>
+		<td><%-  title(JSON.parse(jsonList[i])['type']) %></td>
+		<td><%-  title(JSON.parse(jsonList[i])['location']) %></td>
+		<td><%-  JSON.parse(jsonList[i])['minPrice'] %></td>
+		<td><%-  JSON.parse(jsonList[i])['maxPrice'] %></td>
+		<td><%-  JSON.parse(jsonList[i])['beds'] %></td>
+	</tr>
+	<% } %>
+</table>
+<hr>
+<a href="users">user info</a>

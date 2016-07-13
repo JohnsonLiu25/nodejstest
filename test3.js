@@ -1,6 +1,6 @@
-//NO RESTRICTIONS CODE
+ //NO RESTRICTIONS CODE
 
-// Opens File and turns it into usable content. NEED SOME HELP HERE
+// Opens File and turns it into usable content.
 var fs = require("fs");
 //Sample search JSON object
 var search = fs.readFileSync("search.json");
