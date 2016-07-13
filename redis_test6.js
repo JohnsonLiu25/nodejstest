@@ -1,4 +1,5 @@
 //Analyze entire database - terminal
+//Adding all json to list
 var redis = require('redis');
 var client = redis.createClient();
 
