@@ -1,9 +1,12 @@
 //EJS LOCAL
-var redis = require('redis');
 var client = require('redis').createClient(process.env.REDIS_URL);
 
-var express = require('express')
-    , app = module.exports = express();
+var express = require('express');
+var app = express();
+
+app.set('port', (process.env.PORT || 5000));
+
+app.use(express.static(__dirname + '/public'));
  
 // Using the .html extension instead of
 // having to name the views as *.ejs
@@ -44,10 +47,9 @@ app.get('/users/:id', function(req, res){
   });
 });
 
-if (!module.parent) {
-  app.listen(8080);
-  console.log('EJS Demo server started on port 8080');
-}
+app.listen(app.get('port'), function() {
+    console.log('Node app is running on port', app.get('port'));
+});
 
 //Data lists
 var list_of_keys = [];
