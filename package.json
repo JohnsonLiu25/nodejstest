@@ -1,32 +1,12 @@
 {
-  "name": "test",
+  "name": "images",
   "version": "1.0.0",
   "description": "",
-  "main": "test.js",
-  "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "hashmap": "^2.0.6",
-    "node-redis-streamify": "^0.1.6",
-    "redis": "^2.6.2"
-  },
-  "devDependencies": {},
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "engines": {
-    "node": "6.2.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JohnsonLiu25/priorityjsontest.git"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JohnsonLiu25/priorityjsontest/issues"
-  },
-  "homepage": "https://github.com/JohnsonLiu25/priorityjsontest#readme"
+  "license": "ISC"
 }

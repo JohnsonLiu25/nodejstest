@@ -29,9 +29,7 @@ app.get('/', function(req, res){
 app.get('/users', function(req, res){
   res.render('user', {
     pageTitle: 'User Searches',
-    allkeys: list_of_keys,
-    id: 'senderid2',
-    sender: sender
+    allkeys: list_of_keys
   });
 });
 

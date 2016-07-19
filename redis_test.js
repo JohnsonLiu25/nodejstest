@@ -1,4 +1,4 @@
-//Analyze entire database - heroku
+//Analyze entire database - heroku - outdated
 var client = require('redis').createClient(process.env.REDIS_URL);
 
 var express = require('express');

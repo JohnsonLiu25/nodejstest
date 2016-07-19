@@ -70,30 +70,3 @@ analyzeResponse('senderid2', function(id_sender,u_types,u_locations,u_minPrices,
 	sortCount(u_types);
 	console.log("The average price range is: $"+avg(u_minPrices)+" to $"+avg(u_maxPrices) + "\n");
 });
-/*
-client.sadd("senderid",JSON.stringify({'type':'villa',
-        'location' : 'manhattan',
-        'minPrice' : 4000,
-        'maxPrice' : 4500,
-        'beds' : 3}));
-client.sadd("senderid2",JSON.stringify({'type':'villa',
-        'location' : 'queens',
-        'minPrice' : 2001,
-        'maxPrice' : 3000,
-        'beds' : 3}));
-client.sadd("senderid2",JSON.stringify({'type':'house',
-        'location' : 'brooklyn',
-        'minPrice' : 3000,
-        'maxPrice' : 3200,
-        'beds' : 4 }));
-client.sadd("senderid2",JSON.stringify({'type':'villa',
-        'location' : 'queens',
-        'minPrice' : 2050,
-        'maxPrice' : 4000,
-        'beds' : 3}));
-client.sadd("senderid2",JSON.stringify({'type':'villa',
-        'location' : 'manhattan',
-        'minPrice' : 3200,
-        'maxPrice' : 4000,
-        'beds' : 3}));
-*/

@@ -1,7 +1,1 @@
-{
-	"type":"apartment",
-	"location":"Brooklyn",
-	"minPrice":0,
-	"maxPrice":6000,
-	"beds":3
-}
+{"id":335,"slug":"550-west-45th-street-916","title":"Hell's Kitchen, 1 bedroom","bedrooms":1,"bathrooms":1,"neighborhood":"Hell's Kitchen","parent_neighborhood":{"id":13,"name":"Manhattan","parent_neighborhood":null},"price":3100,"image_url":"/attachments/store/fit/250/120/99609809117b79b4d7e97177ead57b49c2d9364c7d339ddf7b0f03c4fd6c/image","price_string":"$3,100","available_date":"2016-06-06","full_address":"550 West 45th Street, 10036","listing_type_text":"Entire Apartment","created_at":"2016-03-11T12:09:51.000-05:00","views":268,"messages":4,"images":27}
