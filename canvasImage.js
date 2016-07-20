@@ -31,7 +31,7 @@ function ResizeImg(img, ctx,canvas,x,y) {
     	ctx.drawImage(img, 0, offset, w  , h , x, y, IDEAL_W, IDEAL_H); 
     }
 
-    var out = fs.createWriteStream(img.src.slice(0,1) + 'montage.jpg');
+    var out = fs.createWriteStream('montage.jpg');
     var stream = canvas.createJPEGStream({
 	//Default values
     });
