@@ -25,10 +25,10 @@ function ResizeImg(img, ctx,canvas,x,y) {
     }
     //Crop Top and bottom
     else{
-    	h = ow / 1.91;
+    	h = ow / ASPECT;
     	w = ow;
     	offset = (oh - h)/2;
-    	ctx.drawImage(img, 0, offset, w  , h-offset , x, y, IDEAL_W, IDEAL_H); 
+    	ctx.drawImage(img, 0, offset, w  , h , x, y, IDEAL_W, IDEAL_H); 
     }
 
     var out = fs.createWriteStream(img.src.slice(0,1) + 'montage.jpg');
@@ -75,4 +75,4 @@ function montage(a,b,c,d){
     resize(a, b, c, d);
 }
 
-montage('a.jpg','b.jpg','c.jpg','d.jpg');
+montage('a.jpg','b.jpg','c.jpg','e.jpg');
