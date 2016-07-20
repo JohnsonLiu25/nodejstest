@@ -1,6 +1,6 @@
 var im = require('imagemagick');
 var fs = require('fs')
-  , gm = require('gm').subClass({imageMagick: true});
+, gm = require('gm').subClass({imageMagick: true});
 var Sync = require('sync');
 var deasync = require('deasync');
 var async = require('async');
@@ -9,6 +9,7 @@ var async = require('async');
 var ideal_width = 489;
 var ideal_height = 256;
 var ideal_ar = ideal_width/ideal_height;
+
 
 function resize(image, callback){
     async.waterfall([
@@ -80,16 +81,21 @@ function resize_all(a,b,c,d){
 function checkFile(file){
     fs.stat(file, function(err, stat) {
 	if(err == null) {
-            return true;
-	    if(err.code == 'ENOENT') {
-		// file does not exist
-		return false;
-	    } else {
-		return false;
-	    }
+	    console.log('err == null');
+	    return true;
 	}
+	else if(err.code == 'ENOENT') {
+	    console.log('err == ENOENT');
+	    // file does not exist
+	    return false;
+	} else {
+	    console.log('else');
+	    return false;
+	} 
+    
+	console.log(stat);
     });
-	   
+    
 }
 
 function asyncFunction(a, b, callback) {
@@ -129,32 +135,70 @@ function asyncFunction(a, b, callback) {
 
 function montageMe(a,b,c,d,callback){
     console.log('montage');
-    while( checkFile('a-cropped.jpg'))
-	gm()
-	.in('-page', '+0+0')  // Custom place for each of the images
-	.in(a.slice(0,-4)+'-cropped.jpg')
-	.in('-page', '+489+0')
-	.in(b.slice(0,-4)+'-cropped.jpg')
-	.in('-page', '+0+256')
-	.in(c.slice(0,-4)+'-cropped.jpg')
-	.in('-page', '+489+256')
-	.in(d.slice(0,-4)+'-cropped.jpg')
-	.mosaic()  // Merges the images as a matrix
-	.write('output.jpg', function (err) {
-	    if (err) console.log(err);
-	});
+    //while( !checkFile('a-cropped.jpg')) {}
+    var image = gm() 
+	    .in('-page', '+0+0')  // Custom place for each of the images
+	    .in(a.slice(0,-4)+'-cropped.jpg')
+	    .in('-page', '+489+0')
+	    .in(b.slice(0,-4)+'-cropped.jpg')
+	    .in('-page', '+0+256')
+	    .in(c.slice(0,-4)+'-cropped.jpg')
+	    .in('-page', '+489+256')
+	    .in(d.slice(0,-4)+'-cropped.jpg')
+	    .mosaic()  // Merges the images as a matrix
+	    .write('output.jpg', function (err) {
+		if (err) console.log(err);
+	    });
+    //console.log(image);
+    //console.log(image);
+    //callback(image);
+    // image.write('output.jpg', function (err) {
+    // 	console.log('Calling gm.write() for montage');
+    // 	if (err) console.log(err);
+    // });
+
+    /*.write('output.jpg', function (err) {
+     if (err) console.log(err);
+     });*/
 }
 
+function gmWrite(image){
+    setTimeout(image.write('output.jpg',function (err) {
+	if (err) console.log(err);
+    }), 3000);
+}
+
+var image;
+//montageMe('a.jpg', 'b.jpg', 'c.jpg', 'd.jpg', function(){
 resize('a.jpg', function(){    
     resize('b.jpg', function(){
-	resize('c.jpg', function(){
-	    resize('d.jpg', function(){
-		montageMe('a.jpg', 'b.jpg', 'c.jpg', 'd.jpg');
+	    resize('c.jpg', function(){
+		resize('d.jpg', function(){
+		    //image = montageMe('a.jpg', 'b.jpg', 'c.jpg', 'd.jpg');
+		    setTimeout(montageMe('a.jpg', 'b.jpg', 'c.jpg', 'd.jpg'),
+			       300);
+		});
 
 	    });
 
-	});
-
     });
     
-});
+    });
+    //});
+
+    //while
+    /*image.write('output.jpg',function (err) {
+     if (err) console.log(err);
+     });*/
+    //console.log(image);
+    items = ['a.jpg', 'b.jpg', 'c.jpg', 'd.jpg'];
+
+    /*async.each(items, resize,  
+     function(err){
+     montageMe('a.jpg', 'b.jpg', 'c.jpg', 'd.jpg');
+     gm().write('output.jpg', function (err) {
+     console.log('Calling gm.write() for montage');
+     if (err) console.log(err);
+     });
+     });
+     */
